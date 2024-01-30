@@ -1,0 +1,24 @@
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+  background: url('../public/background.png') no-repeat center center fixed;
+  background-size: cover;
+  color: #ffffff; /* Mudar conforme necessário */
+}
+
+.anime-title {
+  font-family: 'Bangers', cursive;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #E0E0E0;
+  text-shadow: 2px 2px 4px #000000;
+  animation: glowAnimation 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glowAnimation {
+  from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #E60073, 0 0 40px #E60073, 0 0 50px #E60073, 0 0 60px #E60073, 0 0 70px #E60073;
+  }
+  to {
+      text-shadow: 0 0 20px #fff, 0 0 30px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 60px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177;
+  }
+}

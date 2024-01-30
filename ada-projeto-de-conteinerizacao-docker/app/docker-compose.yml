@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  back-end:
+    image: mhg156/anime_list_back:latest
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: "mysql://user:password@database:3306/adabase"
+    command: /bin/sh -c "npx prisma migrate deploy && npx prisma db seed && npm start"
+    depends_on:
+      - database
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    networks:
+      - app-network
+
+  front-end:
+    image: mhg156/anime_list_front:latest
+    ports:
+      - "80:80"
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    networks:
+      - app-network
+
+  database:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: adabase
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - app-network
+
+volumes:
+  db-data:
+
+networks:
+  app-network:
+    driver: overlay

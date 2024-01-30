@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Anime {
+  id            Int      @id
+  url           String   @db.VarChar(255)
+  imageUrl      String   @map("image_url") @db.VarChar(255)
+  title         String   @db.VarChar(255)
+  titleJapanese String   @map("title_japanese") @db.VarChar(255)
+  episodes      Int?
+  status        String
+  score         Float
+  synopsis      String   @db.Text
+  year          Int?
+  producer      String
+  studio        String
+  genres        String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("anime")
+}

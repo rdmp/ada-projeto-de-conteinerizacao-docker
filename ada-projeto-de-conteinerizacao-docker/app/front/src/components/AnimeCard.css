@@ -1,0 +1,38 @@
+.anime-card {
+  width: 500px;
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  background: white;
+}
+
+.anime-image {
+  width: 100%;
+  height: 700px;
+  object-fit: cover;
+}
+
+.anime-info {
+  padding: 15px;
+}
+
+.anime-info h3 {
+  margin-top: 0;
+  color: #333;
+  animation: glowAnimation 1.5s ease-in-out infinite alternate;
+}
+
+.anime-info p {
+  font-size: 14px;
+  color: #666;
+}
+
+@keyframes glowAnimation {
+  from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #E60073, 0 0 40px #E60073, 0 0 50px #E60073, 0 0 60px #E60073, 0 0 70px #E60073;
+  }
+  to {
+      text-shadow: 0 0 20px #fff, 0 0 30px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 60px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177;
+  }
+}
